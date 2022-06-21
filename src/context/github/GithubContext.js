@@ -14,6 +14,13 @@ export const GithubProvider = ({children}) => {
 
   const [state, dispatch] = useReducer(githubReducer, initialState)
 
+  // Clear users from state
+  const clearUsers = () => {
+    dispatch({
+      type: 'CLEAR_USERS',
+    })
+  }
+
   // Get search results
   const searchUsers = async (text) => {
     setLoading()
@@ -45,6 +52,7 @@ export const GithubProvider = ({children}) => {
       users: state.users,
       loading: state.loading,
       searchUsers,
+      clearUsers,
     }}>
       {children}
     </GitHubContext.Provider>
